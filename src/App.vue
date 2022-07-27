@@ -1,3 +1,18 @@
 <template>
-  <h1>hello world!</h1>
+  <weekdays />
 </template>
+
+<script>
+import Weekdays from "./components/WeekDays.vue"
+export default {
+  name: 'App',
+  components: {
+    Weekdays,
+  }
+}
+
+</script>
+
+<style>
+
+</style>
