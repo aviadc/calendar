@@ -2,8 +2,8 @@
   <div class="calendar-container">
     <!-- <button v-on:click="increment">{{ number }}</button> -->
     <br>
-    <Day v-for="day in paddingDays" :key="day" :dayNumber="day" aclass="padding"/>
-    <Day v-for="day in daysInMonth" :key="day" :dayNumber="day" aclass="current-month"/>
+    <Day v-for="day in paddingDays" :key='Math.random()*day*1000' :dayNumber="day" aclass="padding"/>
+    <Day v-for="day in daysInMonth" :key='Math.random()*day*1000' :dayNumber="day" aclass="current-month"/>
   </div>
 </template>
 <script>
@@ -12,6 +12,9 @@ import Day from './Day.vue';
 export default {
   components: { Day },
   name: "Calendar",
+  props:{
+    currentDate: Number,
+  },
   data() {
     return {
       weekDays: [
@@ -19,11 +22,11 @@ export default {
         "Monday",
         "Tuesday",
         "Wednesday",
-        "Thrursday",
+        "Thursday",
         "Friday",
         "Saturday",
       ],
-      dt: Date,
+      dt: new Date(),
       day: Number,
       month: Number,
       year: Number,
@@ -35,7 +38,7 @@ export default {
   },
   computed: {},
   mounted() {
-    this.dt = new Date();
+    this.dt.setMonth(new Date().getMonth()+this.currentDate);
     this.day = this.dt.getDate();
     this.month = this.dt.getMonth();
     this.year = this.dt.getFullYear();

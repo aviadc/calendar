@@ -8,7 +8,7 @@
 export default {
   name: "Day",
   props: {
-    dayNumber: String,
+    dayNumber: Number,
     aclass: String,
   },
 };
