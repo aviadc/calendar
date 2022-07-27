@@ -1,6 +1,8 @@
 <template>
-  <weekdays />
-  <calendar />
+<div class="container">
+  <Weekdays />
+  <Calendar />
+</div>
 </template>
 
 <script>
@@ -16,5 +18,13 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+  .container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+  }
+
 </style>
