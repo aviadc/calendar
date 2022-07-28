@@ -26,6 +26,6 @@ export default {
 }
 
 .current-month:hover {
-  background-color: lightgreen;
+  background-color: gold;
 }
 </style>
