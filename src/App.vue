@@ -1,7 +1,9 @@
 <template>
 <div class="container">
-  <h2>{{currentDate}}</h2>
-  <Header :currentDate='currentDate' @next-month="incrementMonth" @prev-month="decrementMonth" :key="currentDate"/>
+  <Header :currentDate='currentDate'
+   @next-month="currentDate++" @prev-month="currentDate--"
+   @next-year="currentDate+=12" @prev-year="currentDate-=12" 
+   :key="currentDate"/>
   <Weekdays  />
   <Calendar :currentDate='currentDate' :key="currentDate"/>
 </div>
@@ -26,14 +28,7 @@ export default {
   mounted(){
     console.log("current nav",this.currentDate);
   },
-  methods: {
-    incrementMonth(){
-      this.currentDate++;
-    },
-    decrementMonth(){
-       this.currentDate--;
-    },
-  }
+ 
  
 }
 
@@ -44,8 +39,8 @@ export default {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center; 
+    margin-top: 4rem;
   }
 
 </style>
