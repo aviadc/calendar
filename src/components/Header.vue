@@ -13,8 +13,8 @@
       </div>
     </div>
     <div class="header-right">
-      <button @click="$emit('prev-month')">PREV</button>
-      <button @click="$emit('next-month')">NEXT</button>
+      <!-- <button @click="$emit('prev-month')">PREV</button>
+      <button @click="$emit('next-month')">NEXT</button> -->
   </div>
   </div>
 </template>
@@ -22,19 +22,19 @@
 export default {
   name: 'Header',
   props:{
-    currentDate: Number,
+    currentDate: Date,
   },
   data(){
     return{
-      dt: new Date(),
+      // dt: new Date(),
       month: String,
       year: String,
     }
   },
   mounted(){
-    this.dt.setMonth(new Date().getMonth()+this.currentDate);
-    this.month = `${this.dt.toLocaleString('en-GB',{month: 'long'})}`;
-    this.year = this.dt.getFullYear();
+    // this.currentDate.setMonth(new Date().getMonth()+this.currentDate);
+    this.month = `${this.currentDate.toLocaleString('en-GB',{month: 'long'})}`;
+    this.year = this.currentDate.getFullYear();
   }
 };
 </script>
@@ -43,5 +43,10 @@ export default {
     width: 67vw;
     display: flex;
     justify-content: space-between;
+  }
+
+  .header-left{
+    display: flex;
+    gap: 1rem;
   }
 </style>

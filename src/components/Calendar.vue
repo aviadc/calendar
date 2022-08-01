@@ -13,7 +13,7 @@ export default {
   components: { Day },
   name: "Calendar",
   props:{
-    currentDate: Number,
+    currentDate: Date,
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
         "Friday",
         "Saturday",
       ],
-      dt: new Date(),
+      // dt: new Date(),
       day: Number,
       month: Number,
       year: Number,
@@ -38,10 +38,10 @@ export default {
   },
   computed: {},
   mounted() {
-    this.dt.setMonth(new Date().getMonth()+this.currentDate);
-    this.day = this.dt.getDate();
-    this.month = this.dt.getMonth();
-    this.year = this.dt.getFullYear();
+    // this.dt.setMonth(new Date().getMonth()+this.currentDate);
+    this.day = this.currentDate.getDate();
+    this.month = this.currentDate.getMonth();
+    this.year = this.currentDate.getFullYear();
     this.daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
     this.dateString = new Date(this.year, this.month, 1).toLocaleDateString(
       'en-GB',
@@ -53,7 +53,7 @@ export default {
       }
     );
     this.paddingDays = this.weekDays.indexOf(this.dateString.split(', ')[0]);
-    console.log(this.dt);
+    console.log(this.currentDate);
     console.log(this.dateString);
     console.log(this.paddingDays);
   },

@@ -1,11 +1,11 @@
 <template>
 <div class="container">
   <Header :currentDate='currentDate'
-   @next-month="currentDate++" @prev-month="currentDate--"
-   @next-year="currentDate+=12" @prev-year="currentDate-=12" 
-   :key="currentDate"/>
+   @next-month="nextMonth()" @prev-month="prevMonth()"
+   @next-year="nextYear()" @prev-year="prevYear()" 
+   :key="month+year"/>
   <Weekdays  />
-  <Calendar :currentDate='currentDate' :key="currentDate"/>
+  <Calendar :currentDate='currentDate' :key="month+year"/>
 </div>
 </template>
 
@@ -22,12 +22,33 @@ export default {
   },
   data(){
     return{
-      currentDate: 0, 
+      currentDate: new Date(), 
+      month: 0,
+      year: 0,
     }
   },
   mounted(){
-    console.log("current nav",this.currentDate);
+    // this.currentDate = new Date();
+    console.log("app current Date",this.currentDate);
   },
+  methods:{
+    nextMonth(){
+      this.month++;
+      this.currentDate.setMonth(new Date().getMonth()+this.month);
+    },
+    prevMonth(){
+       this.month--;
+      this.currentDate.setMonth(new Date().getMonth()+this.month);
+    },
+    nextYear(){
+      this.year++;
+       this.currentDate.setFullYear(new Date().getYear()+this.year);
+    },
+    prevYear(){
+      this.year--;
+      this.currentDate.setFullYear(new Date().getYear()+this.year);
+    }
+  }
  
  
 }
