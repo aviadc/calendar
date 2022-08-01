@@ -2,8 +2,9 @@
   <div class="calendar-container">
     <!-- <button v-on:click="increment">{{ number }}</button> -->
     <br>
-    <Day v-for="day in paddingDays" :key='Math.random()*day*1000' :dayNumber="day" aclass="padding"/>
-    <Day v-for="day in daysInMonth" :key='Math.random()*day*1000' :dayNumber="day" aclass="current-month"/>
+    <Day v-for="day in startPaddingDays" :key='Math.random()*day*1000' :dayNumber="daysPrevMonth - startPaddingDays + day" aclass="padding"/>
+    <Day v-for="day in daysCurrentMonth" :key='Math.random()*day*1000' :dayNumber="day" aclass="current-month"/>
+    <Day v-for="day in endPaddingDays" :key='Math.random()*day*1000' :dayNumber="day" aclass="padding"/>
   </div>
 </template>
 <script>
@@ -26,14 +27,15 @@ export default {
         "Friday",
         "Saturday",
       ],
-      // dt: new Date(),
       day: Number,
       month: Number,
       year: Number,
       number: 0,
-      daysInMonth: Number,
+      daysCurrentMonth: Number,
+      daysPrevMonth: Number,
       dateString: Date,
-      paddingDays: Number, //the number of days in the first row in the calendar of the previous month
+      startPaddingDays: Number, //the number of days in the first row in the calendar of the previous month
+      endPaddingDays: Number, //the number of days in the last row in the calendar of the next month
     };
   },
   computed: {},
@@ -42,8 +44,9 @@ export default {
     this.day = this.currentDate.getDate();
     this.month = this.currentDate.getMonth();
     this.year = this.currentDate.getFullYear();
-    this.daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-    this.dateString = new Date(this.year, this.month, 1).toLocaleDateString(
+    this.daysCurrentMonth = new Date(this.year, this.month + 1, 0).getDate();
+    this.daysPrevMonth = new Date(this.year, this.month , 0).getDate();
+    this.startDateString = new Date(this.year, this.month , 1).toLocaleDateString(
       'en-GB',
       {
         weekday: "long",
@@ -52,10 +55,20 @@ export default {
         day: "numeric",
       }
     );
-    this.paddingDays = this.weekDays.indexOf(this.dateString.split(', ')[0]);
-    console.log(this.currentDate);
-    console.log(this.dateString);
-    console.log(this.paddingDays);
+    this.endDateString = new Date(this.year, this.month + 1, 1).toLocaleDateString(
+      'en-GB',
+      {
+        weekday: "long",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      }
+    );
+    this.startPaddingDays = this.weekDays.indexOf(this.startDateString.split(', ')[0]);
+    this.endPaddingDays = 7 - this.weekDays.indexOf(this.endDateString.split(', ')[0]);
+    // console.log(this.endPaddingDays);
+    console.log(this.startDateString);
+    // console.log(this.startPaddingDays);
   },
   methods: {
     increment() {

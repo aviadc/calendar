@@ -52,13 +52,26 @@ export default {
   gap: 1rem;
 }
 
+.header-left button{
+  padding: 5px;
+  background-color: transparent;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.header-left button:hover{
+  background-color: aqua;
+}
+
+.header-left button:active{
+  background-color: brown;
+}
 .header-left-month {
   display: flex;
 }
 .header-left-month span {
   display: block;
   width: 5rem;
-  border: 1px solid green;
   text-align: center;
 }
 

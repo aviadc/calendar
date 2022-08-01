@@ -8,7 +8,7 @@ export default {
   name: 'Weekdays',
   data() {
     return{
-      weekDays: ['Sunday','Monday','Tuesday','Wednesday','Thrursday','Friday','Saturday'],
+      weekDays: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
     }
   }
 }
