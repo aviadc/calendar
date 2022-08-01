@@ -42,11 +42,11 @@ export default {
     },
     nextYear(){
       this.year++;
-       this.currentDate.setFullYear(new Date().getYear()+this.year);
+       this.currentDate.setFullYear(new Date().getFullYear()+this.year);
     },
     prevYear(){
       this.year--;
-      this.currentDate.setFullYear(new Date().getYear()+this.year);
+      this.currentDate.setFullYear(new Date().getFullYear()+this.year);
     }
   }
  
