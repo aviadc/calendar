@@ -55,7 +55,7 @@ export default {
         day: "numeric",
       }
     );
-    this.endDateString = new Date(this.year, this.month + 1, 1).toLocaleDateString(
+    this.endDateString = new Date(this.year, this.month + 1, 0).toLocaleDateString(
       'en-GB',
       {
         weekday: "long",
@@ -65,9 +65,9 @@ export default {
       }
     );
     this.startPaddingDays = this.weekDays.indexOf(this.startDateString.split(', ')[0]);
-    this.endPaddingDays = 7 - this.weekDays.indexOf(this.endDateString.split(', ')[0]);
-    // console.log(this.endPaddingDays);
-    console.log(this.startDateString);
+    this.endPaddingDays = 6 - this.weekDays.indexOf(this.endDateString.split(', ')[0]);
+    console.log("end",this.endDateString);
+    console.log("start",this.startDateString);
     // console.log(this.startPaddingDays);
   },
   methods: {
