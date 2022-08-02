@@ -79,7 +79,7 @@ export default {
 </script>
 <style scoped>
 .calendar-container{
-  width: 67vw;
+  width: 52vw;
   display: flex;
   flex-wrap: wrap;
   border: 1px solid green;

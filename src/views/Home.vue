@@ -1,6 +1,5 @@
 <template>
-<div class="container">
-  <RealHeader/>
+<div class="home-container">
   <Header :currentDate='currentDate'
    @next-month="nextMonth()" @prev-month="prevMonth()"
    @next-year="nextYear()" @prev-year="prevYear()" 
@@ -14,14 +13,12 @@
 import Weekdays from "./components/WeekDays.vue"
 import Calendar from "./components/Calendar.vue"
 import Header from "./components/Header.vue"
-import RealHeader from "./components/RealHeader.vue"
 export default {
   name: 'App',
   components: {
     Header,
     Weekdays,
     Calendar,
-    RealHeader
   },
   data(){
     return{
@@ -59,7 +56,7 @@ export default {
 </script>
 
 <style scoped>
-  .container{
+  .home-container{
     min-height: 100vh;
     display: flex;
     flex-direction: column;

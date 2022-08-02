@@ -42,7 +42,7 @@ export default {
 </script>
 <style scoped>
 .header-container {
-  width: 67vw;
+  width: 52vw;
   display: flex;
   justify-content: space-between;
 }
@@ -71,7 +71,7 @@ export default {
 }
 .header-left-month span {
   display: block;
-  width: 5rem;
+  width: 4rem;
   text-align: center;
 }
 

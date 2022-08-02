@@ -15,8 +15,8 @@ export default {
 </script>
 <style scoped>
 .day {
-  width: 9vw;
-  height: 9vw;
+  width: 7vw;
+  height: 7vw;
   margin: 0.2vw;
   border: 1px solid black;
 }
