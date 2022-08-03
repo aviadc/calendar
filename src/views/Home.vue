@@ -37,24 +37,20 @@ export default {
   },
   methods: {
     nextMonth() {
-      console.log(this.month);
       this.month++;
-      console.log(this.month);
-      this.currentDate.setMonth(new Date().getMonth() + this.month);
+      this.currentDate.setMonth(this.currentDate.getMonth()+1);
     },
     prevMonth() {
-      console.log(this.month);
       this.month--;
-      console.log(this.month);
-      this.currentDate.setMonth(new Date().getMonth() + this.month);
+      this.currentDate.setMonth(this.currentDate.getMonth()-1);
     },
     nextYear() {
       this.year++;
-      this.currentDate.setFullYear(new Date().getFullYear() + this.year);
+      this.currentDate.setFullYear(this.currentDate.getFullYear() + 1);
     },
     prevYear() {
       this.year--;
-      this.currentDate.setFullYear(new Date().getFullYear() + this.year);
+      this.currentDate.setFullYear(this.currentDate.getFullYear() - 1);
     },
   },
 };

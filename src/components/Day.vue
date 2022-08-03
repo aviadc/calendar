@@ -1,6 +1,6 @@
 <template>
-  <div class="day" :class="aclass">
-    {{ dayNumber }}
+  <div class="day" :class="aclass" @click="aclass==='current-month' ? handleDayClick() : null">
+    {{ day }}
   </div>
 </template>
 
@@ -8,9 +8,16 @@
 export default {
   name: "Day",
   props: {
-    dayNumber: Number,
+    day: Number,
+    month: Number,
+    year: Number,
     aclass: String,
   },
+  methods:{
+    handleDayClick(){
+      console.log(`${this.day}/${this.month}/${this.year}`);
+    }
+  }
 };
 </script>
 <style scoped>
@@ -22,11 +29,13 @@ export default {
   box-shadow: 0px 0px 3px #CBD4C2;
 }
 
+
 .padding {
   background-color: grey;
 }
 
 .current-month:hover {
   background-color: gold;
+  cursor: pointer;
 }
 </style>
