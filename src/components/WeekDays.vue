@@ -16,13 +16,14 @@ export default {
 
 <style scoped>
   .week-days-container{
-    width: 67vw;
+    width: 48.5vw;
     border: 1px solid black;
     display: flex;
+    font-size: 1.2rem;
   }
 
   .week-day{ 
-    width: 9vw;
+    width: 6.5vw;
     margin: 0.2vw;
     text-align: center;
   }

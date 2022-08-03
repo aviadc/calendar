@@ -15,10 +15,11 @@ export default {
 </script>
 <style scoped>
 .day {
-  width: 7vw;
-  height: 7vw;
+  width: 6.5vw;
+  height: 6.5vw;
   margin: 0.2vw;
   border: 1px solid black;
+  box-shadow: 0px 0px 3px #CBD4C2;
 }
 
 .padding {

@@ -1,81 +1,75 @@
 <template>
-  <div class="header-container">
-    <div class="header-left">
-      <div class="header-left-month">
-        <button @click="$emit('prev-month')">&#60;</button>
-        <span>{{ month }}</span>
-        <button @click="$emit('next-month')">&#62;</button>
-      </div>
-      <div class="header-left-year">
-        <button @click="$emit('prev-year')">&#60;</button>
-        <span>{{ year }}</span>
-        <button @click="$emit('next-year')">&#62;</button>
-      </div>
-    </div>
-    <div class="header-right">
-      <!-- <button @click="$emit('prev-month')">PREV</button>
-      <button @click="$emit('next-month')">NEXT</button> -->
-    </div>
+  <div class="real-header-container">
+    <button @click="googleSignIn()" class="sign-in" v-show="!loggedIn">SIGN IN</button>
+    <button @click="googleSignOut()" class="sign-out" v-show="loggedIn">SIGN OUT</button>
+    <div class="welcom" v-show="loggedIn">{{name}}</div>
   </div>
 </template>
 <script>
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+} from "firebase/auth";
 export default {
   name: "Header",
-  props: {
-    currentDate: Date,
-  },
   data() {
     return {
-      // dt: new Date(),
-      month: String,
-      year: String,
+      loggedIn: false,
+      name: "",
     };
   },
-  mounted() {
-    // this.currentDate.setMonth(new Date().getMonth()+this.currentDate);
-    this.month = `${this.currentDate.toLocaleString("en-GB", {
-      month: "long",
-    })}`;
-    this.year = this.currentDate.getFullYear();
+  methods: {
+    googleSignIn() {
+      console.log("rr");
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          // console.log("rr");
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+          console.log("user", user);
+          // ...
+        })
+        .catch((error) => {
+          console.log(error);
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          // ...
+        });
+    },
+    googleSignOut() {
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          // Sign-out successful.
+           console.log('Sign-out successful');
+        })
+        .catch((error) => {
+          // An error happened.
+         
+        });
+    },
   },
 };
 </script>
+
 <style scoped>
-.header-container {
-  width: 52vw;
+.real-header-container {
+  height: 6vh;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-}
-
-.header-left {
-  display: flex;
-  gap: 1rem;
-}
-
-.header-left button{
-  padding: 5px;
-  background-color: transparent;
-  border-radius: 5px;
-  transition: all 0.2s ease-in-out;
-}
-
-.header-left button:hover{
-  background-color: aqua;
-}
-
-.header-left button:active{
-  background-color: brown;
-}
-.header-left-month {
-  display: flex;
-}
-.header-left-month span {
-  display: block;
-  width: 4rem;
-  text-align: center;
-}
-
-.header-left-year span {
-  margin: 0 0.5rem;
+  justify-content: flex-end;
+  border: 1px solid black;
 }
 </style>

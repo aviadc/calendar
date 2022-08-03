@@ -1,6 +1,6 @@
 <template>
 <div class="home-container">
-  <Header :currentDate='currentDate'
+  <HeaderCalendar :currentDate='currentDate'
    @next-month="nextMonth()" @prev-month="prevMonth()"
    @next-year="nextYear()" @prev-year="prevYear()" 
    :key="month+year"/>
@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import Weekdays from "./components/WeekDays.vue"
-import Calendar from "./components/Calendar.vue"
-import Header from "./components/Header.vue"
+import HeaderCalendar from "../components/HeaderCalendar.vue"
+import Weekdays from "../components/WeekDays.vue"
+import Calendar from "../components/Calendar.vue"
 export default {
-  name: 'App',
+  name: 'Home',
   components: {
-    Header,
+    HeaderCalendar,
     Weekdays,
     Calendar,
   },
@@ -57,11 +57,11 @@ export default {
 
 <style scoped>
   .home-container{
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center; 
-    margin-top: 4rem;
+    margin-top: 1rem;
   }
 
 </style>
