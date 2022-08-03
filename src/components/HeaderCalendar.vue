@@ -1,5 +1,5 @@
 <template>
-  <div class="header-container">
+  <div class="header-calendar-container">
     <div class="header-left">
       <div class="header-left-month">
         <button @click="$emit('prev-month')">&#60;</button>
@@ -13,8 +13,7 @@
       </div>
     </div>
     <div class="header-right">
-      <!-- <button @click="$emit('prev-month')">PREV</button>
-      <button @click="$emit('next-month')">NEXT</button> -->
+     
     </div>
   </div>
 </template>
@@ -41,7 +40,7 @@ export default {
 };
 </script>
 <style scoped>
-.header-container {
+.header-calendar-container {
   width: 52vw;
   display: flex;
   justify-content: space-between;

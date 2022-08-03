@@ -40,7 +40,6 @@ export default {
   },
   computed: {},
   mounted() {
-    // this.dt.setMonth(new Date().getMonth()+this.currentDate);
     this.day = this.currentDate.getDate();
     this.month = this.currentDate.getMonth();
     this.year = this.currentDate.getFullYear();
@@ -66,8 +65,9 @@ export default {
     );
     this.startPaddingDays = this.weekDays.indexOf(this.startDateString.split(', ')[0]);
     this.endPaddingDays = 6 - this.weekDays.indexOf(this.endDateString.split(', ')[0]);
-    console.log("end",this.endDateString);
-    console.log("start",this.startDateString);
+    // console.log("month",this.month);
+    // console.log("this get month",new Date().getMonth());
+    // console.log("year",this.year);
     // console.log(this.startPaddingDays);
   },
   methods: {

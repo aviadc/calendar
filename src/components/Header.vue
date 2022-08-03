@@ -1,8 +1,8 @@
 <template>
-  <div class="real-header-container">
+  <div class="header-container">
     <button @click="googleSignIn()" class="sign-in" v-show="!loggedIn">SIGN IN</button>
+    <div class="welcom" v-show="loggedIn">welcome {{name}}</div>
     <button @click="googleSignOut()" class="sign-out" v-show="loggedIn">SIGN OUT</button>
-    <div class="welcom" v-show="loggedIn">{{name}}</div>
   </div>
 </template>
 <script>
@@ -28,13 +28,16 @@ export default {
       signInWithPopup(auth, provider)
         .then((result) => {
           // This gives you a Google Access Token. You can use it to access the Google API.
-          // console.log("rr");
           const credential = GoogleAuthProvider.credentialFromResult(result);
+          console.log("credential",credential);
           const token = credential.accessToken;
+          console.log("token",token);
           // The signed-in user info.
           const user = result.user;
           console.log("user", user);
           // ...
+          this.name = user.displayName;
+          this.loggedIn = true;
         })
         .catch((error) => {
           console.log(error);
@@ -54,6 +57,7 @@ export default {
         .then(() => {
           // Sign-out successful.
            console.log('Sign-out successful');
+           this.loggedIn = false;
         })
         .catch((error) => {
           // An error happened.
@@ -65,7 +69,7 @@ export default {
 </script>
 
 <style scoped>
-.real-header-container {
+.header-container {
   height: 6vh;
   width: 100%;
   display: flex;
