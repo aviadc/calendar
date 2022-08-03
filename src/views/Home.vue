@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     // this.currentDate = new Date();
-    console.log("app current Date", this.currentDate);
+    // console.log("app current Date", this.currentDate);
   },
   methods: {
     nextMonth() {

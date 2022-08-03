@@ -16,10 +16,10 @@ export default {
 
 <style scoped>
   .week-days-container{
-    width: 48.5vw;
+    width: 49.5vw;
     border: 1px solid black;
     display: flex;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
   }
 
   .week-day{ 
