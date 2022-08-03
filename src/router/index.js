@@ -9,7 +9,7 @@ const router = createRouter({
       path: '/', component: Home 
     },
     {
-      path: '/tasks', component: Tasks
+      path: '/tasks', component: Tasks,name: 'tasks'
     },
   ]
 });

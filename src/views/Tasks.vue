@@ -1,25 +1,33 @@
 <template>
   <div class="tasks-container">
+    <h1>{{this.$route.params.adate}}</h1>
     <h2>Tasks</h2>
     <button @click="this.$router.go(-1)">back</button>
     <div class="tasks">
         <label for="task">Task</label>
-        <input type="text" v-model="task">
+        <input type="text" >
         <label for="task">Time</label>
-        <input type="text" v-model="task">
+        <input type="text" >
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "Tasks",
+  
   data(){
     return{
-        task: "",
+        task: '',
+        date: String,
 
+    };
+  },
+    mounted(){
+        // this.date = this.$route.params.adate;
     }
-  }
+  
 };
+// console.log("router",$router);
 </script>
 <style scoped>
 .tasks-container {

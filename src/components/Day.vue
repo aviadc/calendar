@@ -16,7 +16,7 @@ export default {
   methods:{
     handleDayClick(){
       console.log(`${this.day}/${this.month}/${this.year}`);
-      this.$router.push("/tasks");
+      this.$router.push({name: 'tasks',params: {adate: `${this.day}/${this.month}/${this.year}`}});
     }
   }
 };
