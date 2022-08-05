@@ -27,16 +27,17 @@ export default {
   height: 6.5vw;
   margin: 0.2vw;
   border: 1px solid black;
+  background-color: white;
   box-shadow: 0px 0px 3px #CBD4C2;
 }
 
 
 .padding {
-  background-color: grey;
+  background-color: #e2e2e2
 }
 
 .current-month:hover {
-  background-color: gold;
+  background-color: #e8faed;
   cursor: pointer;
 }
 </style>

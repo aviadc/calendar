@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     googleSignIn() {
-      console.log("rr");
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
       signInWithPopup(auth, provider)
@@ -75,5 +74,6 @@ export default {
   display: flex;
   justify-content: flex-end;
   border: 1px solid black;
+  
 }
 </style>

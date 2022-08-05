@@ -81,6 +81,7 @@ export default {
 .calendar-container{
   width: 49.5vw;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   border: 1px solid green;
 }

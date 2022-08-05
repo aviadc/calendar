@@ -19,7 +19,8 @@ export default {
     width: 49.5vw;
     border: 1px solid black;
     display: flex;
-    font-size: 0.8rem;
+    font-size: 1.2vw;
+     color: #247BA0;
   }
 
   .week-day{ 

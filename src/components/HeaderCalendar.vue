@@ -41,15 +41,19 @@ export default {
 </script>
 <style scoped>
 .header-calendar-container {
-  width: 52vw;
+  width: 49.5vw;
   display: flex;
   justify-content: space-between;
+  border: 1px solid red;
+  color: #d36c6c;
 }
 
 .header-left {
   display: flex;
   gap: 1rem;
-  font-size: 2rem;
+  font-size: 3vw;
+  width: 30vw;
+  border: 1px solid forestgreen 
 }
 
 .header-left button{
@@ -58,20 +62,17 @@ export default {
   border-radius: 5px;
   transition: all 0.2s ease-in-out;
 }
-
-.header-left button:hover{
-  background-color: aqua;
-}
-
-.header-left button:active{
-  background-color: brown;
-}
-.header-left-month {
+.header-left div{
   display: flex;
 }
+
+.header-left button:hover{
+ background-color: #d36c6c;
+}
+
 .header-left-month span {
   display: block;
-  width: 10rem;
+  width: 12vw;
   text-align: center;
 }
 
