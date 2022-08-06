@@ -4,6 +4,7 @@
     <input type="text" />
     <label for="time">Time</label>
     <input type="text" />
+    <button>add task</button>
   </div>
 </template>
 <script>
