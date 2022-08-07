@@ -1,31 +1,33 @@
 <template>
   <div class="tasks-container">
-    <h1>{{this.$route.params.adate}}</h1>
+    <h1>{{ this.$route.params.adate }}</h1>
     <h2>Tasks</h2>
     <button @click="this.$router.go(-1)">back</button>
-    <div class="tasks">
-        <label for="task">Task</label>
-        <input type="text" >
-        <label for="task">Time</label>
-        <input type="text" >
+    <div class="tasks-inner">
+      <div class="tasks-list"></div>
+      <div class="add-task-container">
+        <AddTask />
+      </div>
     </div>
   </div>
 </template>
 <script>
+import AddTask from "../components/AddTask.vue";
 export default {
-  name: "Tasks",
-  
-  data(){
-    return{
-        task: '',
-        date: String,
-
-    };
-  },
-    mounted(){
+    name: "Tasks",
+    components:{
+      AddTask,
+    },
+    data() {
+        return {
+            task: "",
+            date: String,
+        };
+    },
+    mounted() {
         // this.date = this.$route.params.adate;
-    }
-  
+    },
+    components: { AddTask }
 };
 // console.log("router",$router);
 </script>
@@ -38,11 +40,20 @@ export default {
   align-items: center;
 }
 
-.tasks{
-    height: 70vh;
-    width: 50vh;
-    border: 1px solid red;
-    display: flex;
-    flex-direction: column;
+.tasks-inner {
+  height: 70vh;
+  width: 60vw;
+  border: 1px solid red;
+  display: flex;
+}
+
+.tasks-list {
+  width: 50%;
+  border: 1px solid green;
+}
+
+.add-task-container {
+  width: 50%;
+  border: 1px solid green;
 }
 </style>
