@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-
+import {db} from "../main.js"
 export default {
   name: "AddTask",
   data(){
