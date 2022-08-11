@@ -37,7 +37,7 @@ export default {
           // ...
           this.name = user.displayName;
           this.loggedIn = true;
-          localStorage.setItem("calendar-user", user.email);
+          // localStorage.setItem("calendar-user", user.email);
         })
         .catch((error) => {
           console.log(error);
