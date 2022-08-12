@@ -2,19 +2,20 @@
   <div class="add-container">
     <form @submit="onSubmit">
       <label>Task</label>
-      <input type="text" name="text" v-model="text" placeholder="add text"/>
+      <input type="text" name="text" v-model="text" placeholder="add text" />
       <label>Time</label>
       <select>
         <option v-for="option in options" :key="option.id">
-          {{option.value}}
+          {{ option.value }}
         </option>
       </select>
-      <button>add task</button>
+      <button @click="onSubmit">add task</button>
     </form>
   </div>
 </template>
 <script>
 import {db} from "../main.js"
+import { collection, addDoc } from "firebase/firestore";
 export default {
   name: "AddTask",
   data(){
@@ -35,26 +36,36 @@ export default {
    }
   },
   methods:{
-    onSubmit(e){  
+    async onSubmit(e){
       e.preventDefault();
+      try {
+       const docRef = await addDoc(collection(db, "users"), {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+      });
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
     }
   }
 }
 </script>
 <style scoped>
-.add-task-container form{
+.add-task-container form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-top: 2rem;
 }
 
-.add-task-container form input{
+.add-task-container form input {
   border: none;
   border-bottom: 1px solid black;
 }
 
-.add-task-container form input:focus{
-   outline: none;
+.add-task-container form input:focus {
+  outline: none;
 }
 </style>
