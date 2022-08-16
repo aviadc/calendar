@@ -4,6 +4,7 @@ import './assets/main.css'
 import router from "./router"
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import store from './store'
 
 
 
@@ -21,4 +22,7 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 
-createApp(App).use(router).mount('#app');
+const vueApp = createApp(App);
+vueApp.use(router);
+vueApp.use(store);
+vueApp.mount('#app');
