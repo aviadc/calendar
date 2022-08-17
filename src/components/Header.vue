@@ -6,63 +6,24 @@
   </div>
 </template>
 <script>
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-} from "firebase/auth";
+import {mapGetters} from 'vuex'
 export default {
   name: "Header",
   data() {
     return {
-      loggedIn: false,
+      // loggedIn: false,
       name: "",
     };
   },
+   computed:{
+    ...mapGetters(['loggedIn'])
+  },
   methods: {
     googleSignIn() {
-      const provider = new GoogleAuthProvider();
-      const auth = getAuth();
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          console.log("credential",credential);
-          const token = credential.accessToken;
-          console.log("token",token);
-          // The signed-in user info.
-          const user = result.user;
-          console.log("user", user);
-          // ...
-          this.name = user.displayName;
-          this.loggedIn = true;
-          localStorage.setItem("calendar-user", user.email);
-        })
-        .catch((error) => {
-          console.log(error);
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // The email of the user's account used.
-          const email = error.customData.email;
-          // The AuthCredential type that was used.
-          const credential = GoogleAuthProvider.credentialFromError(error);
-          // ...
-        });
+      this.$store.dispatch('login',5);
     },
     googleSignOut() {
-      const auth = getAuth();
-      signOut(auth)
-        .then(() => {
-          // Sign-out successful.
-           console.log('Sign-out successful');
-           this.loggedIn = false;
-        })
-        .catch((error) => {
-          // An error happened.
-         
-        });
+      this.$store.dispatch('logout',5);
     },
   },
 };
