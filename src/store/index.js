@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
 export default createStore({
   state: {
