@@ -29,11 +29,7 @@ export default createStore({
   },
   actions: {
     async login({ commit }, arg2) {
-      // commit('LOG_IN', 23);
-      // console.log(arg1,"arg1");
-      // console.log(arg2, "arg2");
-
-      commit('LOG_IN', 23);
+      
       // const provider = new GoogleAuthProvider();
       // const auth = getAuth();
       // signInWithPopup(auth, provider)
@@ -64,7 +60,6 @@ export default createStore({
 
     },
     async logout({commit}){
-      commit('LOG_OUT', 23);
       // const auth = getAuth();
       // signOut(auth)
       //   .then(() => {
