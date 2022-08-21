@@ -30,47 +30,47 @@ export default createStore({
   actions: {
     async login({ commit }, arg2) {
       
-      // const provider = new GoogleAuthProvider();
-      // const auth = getAuth();
-      // signInWithPopup(auth, provider)
-      //   .then((result) => {
-      //     // This gives you a Google Access Token. You can use it to access the Google API.
-      //     const credential = GoogleAuthProvider.credentialFromResult(result);
-      //     console.log("credential", credential);
-      //     const token = credential.accessToken;
-      //     console.log("token", token);
-      //     // The signed-in user info.
-      //     const user = result.user;
-      //     console.log("user", user);
-      //     // ...
-      //     this.name = user.displayName;
-      //     // localStorage.setItem("calendar-user", user.email);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     // Handle Errors here.
-      //     const errorCode = error.code;
-      //     const errorMessage = error.message;
-      //     // The email of the user's account used.
-      //     const email = error.customData.email;
-      //     // The AuthCredential type that was used.
-      //     const credential = GoogleAuthProvider.credentialFromError(error);
-      //     // ...
-      //   });
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          console.log("credential", credential);
+          const token = credential.accessToken;
+          console.log("token", token);
+          // The signed-in user info.
+          const user = result.user;
+          console.log("user", user);
+          // ...
+          this.name = user.displayName;
+          // localStorage.setItem("calendar-user", user.email);
+        })
+        .catch((error) => {
+          console.log(error);
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          // ...
+        });
 
     },
     async logout({commit}){
-      // const auth = getAuth();
-      // signOut(auth)
-      //   .then(() => {
-      //     // Sign-out successful.
-      //      console.log('Sign-out successful');
-      //      this.loggedIn = false;
-      //   })
-      //   .catch((error) => {
-      //     // An error happened.
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          // Sign-out successful.
+           console.log('Sign-out successful');
+           this.loggedIn = false;
+        })
+        .catch((error) => {
+          // An error happened.
          
-      //   });
+        });
     }
 
   }
