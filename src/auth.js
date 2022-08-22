@@ -4,8 +4,8 @@ import store from './store';
 // https://firebase.google.com/docs/auth/web/manage-users
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    store.commit(`user/USER_DETAILS`, user);
+    store.dispatch('login',5);
   } else {
-    store.commit(`user/LOGOUT`);
+    store.dispatch('logout',5);
   }
 });

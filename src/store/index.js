@@ -5,31 +5,49 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from '../main';
 
 export default createStore({
   state: {
     loggedIn: false,
-    name: "",
+    email: '',
+    name: '',
     tasks: []
   },
   getters: {
     loggedIn: ({ loggedIn }) => loggedIn,
+    email: ({ email }) => email,
     name: ({ name }) => name,
     tasks: ({ tasks }) => tasks,
   },
   mutations: {
-    LOG_IN(state, arg2) {
+    LOG_IN(state, user) {
       console.log("in commit", state, arg2)
       state.loggedIn = true;
     },
     LOG_OUT(state) {
       state.loggedIn = false;
-    }
+    },
+    SET_NAME(state, user) {
+      state.name = user.displayName;
+    },
+    SET_EMAIL(state, user) {
+      state.name = user.email;
+    },
+    ADD_TASK(state, task) {
+      state.tasks.push(task);
+    },
+    DELETE_TASK(state, taskId) {
+      state.tasks = state.tasks.filter((task) => {
+        return task.id !== taskId;
+      })
+    },
+
   },
   actions: {
     async login({ commit }, arg2) {
-      
+
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
       signInWithPopup(auth, provider)
@@ -43,8 +61,13 @@ export default createStore({
           const user = result.user;
           console.log("user", user);
           // ...
-          this.name = user.displayName;
-          // localStorage.setItem("calendar-user", user.email);
+
+          commit('LOG_IN');
+          // add user details to firestore
+          const userDoc = {
+
+          }
+          setDoc(userDoc, { capital: true }, { merge: true });
         })
         .catch((error) => {
           console.log(error);
@@ -59,17 +82,18 @@ export default createStore({
         });
 
     },
-    async logout({commit}){
+    async logout({ commit }) {
       const auth = getAuth();
       signOut(auth)
         .then(() => {
           // Sign-out successful.
-           console.log('Sign-out successful');
-           this.loggedIn = false;
+          console.log('Sign-out successful');
+          commit('LOG_OUT');
+
         })
         .catch((error) => {
           // An error happened.
-         
+
         });
     }
 

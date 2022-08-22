@@ -19,8 +19,10 @@ export default {
     ...mapGetters(['loggedIn'])
   },
   methods: {
-    googleSignIn() {
-      this.$store.dispatch('login',5);
+    async googleSignIn() {
+      // console.log("loggedin-header-before",this.loggedIn);
+      await this.$store.dispatch('login',5);
+      // console.log("loggedin-header-after",this.loggedIn);
     },
     googleSignOut() {
       this.$store.dispatch('logout',5);

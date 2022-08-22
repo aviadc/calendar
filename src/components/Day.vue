@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "Day",
   props: {
@@ -13,10 +14,16 @@ export default {
     year: Number,
     aclass: String,
   },
+  computed:{
+    ...mapGetters(['loggedIn'])
+  },
   methods:{
+    
     handleDayClick(){
-      console.log(`${this.day}/${this.month}/${this.year}`);
-      this.$router.push({name: 'tasks',params: {adate: `${this.day}/${this.month}/${this.year}`}});
+      if(this.loggedIn){ 
+        console.log(`${this.day}/${this.month}/${this.year}`);
+        this.$router.push({name: 'tasks',params: {adate: `${this.day}/${this.month}/${this.year}`}});
+      }
     }
   }
 };
