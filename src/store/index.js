@@ -5,7 +5,7 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from '../main';
 
 export default createStore({
@@ -22,8 +22,8 @@ export default createStore({
     tasks: ({ tasks }) => tasks,
   },
   mutations: {
-    LOG_IN(state, user) {
-      console.log("in commit", state, arg2)
+    LOG_IN(state) {
+      console.log("in commit", state)
       state.loggedIn = true;
     },
     LOG_OUT(state) {
@@ -64,10 +64,12 @@ export default createStore({
 
           commit('LOG_IN');
           // add user details to firestore
-          const userDoc = {
-
+          const userData = {
+            name: user.displayName,
+            email: user.email,
           }
-          setDoc(userDoc, { capital: true }, { merge: true });
+          const userDoc = doc(collection(db,'users'));
+          setDoc(userDoc, userData,{ capital: true }, { merge: true });
         })
         .catch((error) => {
           console.log(error);
