@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from '../main';
+import { isDocumentExist } from '../utils/firestoreUtils';
 
 export default createStore({
   state: {
@@ -23,7 +24,6 @@ export default createStore({
   },
   mutations: {
     LOG_IN(state) {
-      console.log("in commit", state)
       state.loggedIn = true;
     },
     LOG_OUT(state) {
@@ -33,7 +33,8 @@ export default createStore({
       state.name = user.displayName;
     },
     SET_EMAIL(state, user) {
-      state.name = user.email;
+      state.email = user.email;
+      console.log("in commit", state)
     },
     ADD_TASK(state, task) {
       state.tasks.push(task);
@@ -51,7 +52,7 @@ export default createStore({
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
       signInWithPopup(auth, provider)
-        .then((result) => {
+        .then(async (result) => {
           // This gives you a Google Access Token. You can use it to access the Google API.
           const credential = GoogleAuthProvider.credentialFromResult(result);
           console.log("credential", credential);
@@ -68,8 +69,15 @@ export default createStore({
             name: user.displayName,
             email: user.email,
           }
+          commit('SET_NAME',user);
+          commit('SET_EMAIL',user);
+          
+         const isDocExist = await isDocumentExist(user.email);
+         if(!isDocExist){
           const userDoc = doc(collection(db,'users'));
           setDoc(userDoc, userData,{ capital: true }, { merge: true });
+         }
+           
         })
         .catch((error) => {
           console.log(error);
