@@ -36,6 +36,10 @@ export default createStore({
       state.email = user.email;
       console.log("in commit", state)
     },
+    SET_TASKS(state, tasks) {
+      state.tasks = [...user.tasks];
+      console.log("in commit", state)
+    },
     ADD_TASK(state, task) {
       state.tasks.push(task);
     },
