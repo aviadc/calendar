@@ -4,13 +4,9 @@ import { db } from "../main";
 
 
 
-export const isDocumentExist = async (email)=>{
+export const fetchUserDetails = async (email)=>{
   const q = query(collection(db, "users"), where("email", "==", email));
   const result = await getDocs(q); 
-  console.log("result",result.docs[0].data());
-  return !result.empty;
+  return result.empty? false : result.docs[0].data();
 }
 
-export const fetchUserDetails = async (email)=>{
-
-}

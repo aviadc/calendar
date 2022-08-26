@@ -5,9 +5,9 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db } from '../main';
-import { isDocumentExist } from '../utils/firestoreUtils';
+import { fetchUserDetails } from '../utils/firestoreUtils';
 
 export default createStore({
   state: {
@@ -36,9 +36,8 @@ export default createStore({
       state.email = user.email;
       console.log("in commit", state)
     },
-    SET_TASKS(state, tasks) {
+    SET_TASKS(state, user) {
       state.tasks = [...user.tasks];
-      console.log("in commit", state)
     },
     ADD_TASK(state, task) {
       state.tasks.push(task);
@@ -72,16 +71,18 @@ export default createStore({
           const userData = {
             name: user.displayName,
             email: user.email,
+            tasks: [],
           }
-          commit('SET_NAME',user);
-          commit('SET_EMAIL',user);
-          
-         const isDocExist = await isDocumentExist(user.email);
-         if(!isDocExist){
-          const userDoc = doc(collection(db,'users'));
-          setDoc(userDoc, userData,{ capital: true }, { merge: true });
-         }
-           
+          commit('SET_NAME', user);
+          commit('SET_EMAIL', user);
+
+          const userDetails = await fetchUserDetails(user.email);
+          if (!userDetails) {
+            addDoc(collection(db, 'users'), userData);
+          }else{
+            commit('SET_TASKS',user);
+          }
+
         })
         .catch((error) => {
           console.log(error);
