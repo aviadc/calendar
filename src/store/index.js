@@ -37,6 +37,7 @@ export default createStore({
       console.log("in commit", state)
     },
     SET_TASKS(state, user) {
+      console.log("in set tasks - user", user)
       state.tasks = [...user.tasks];
     },
     ADD_TASK(state, task) {
@@ -80,7 +81,7 @@ export default createStore({
           if (!userDetails) {
             addDoc(collection(db, 'users'), userData);
           }else{
-            commit('SET_TASKS',user);
+            commit('SET_TASKS',userDetails);
           }
 
         })
