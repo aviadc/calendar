@@ -14,7 +14,7 @@ export default createStore({
     loggedIn: false,
     email: '',
     name: '',
-    tasks: []
+    tasks: {}
   },
   getters: {
     loggedIn: ({ loggedIn }) => loggedIn,
@@ -72,7 +72,7 @@ export default createStore({
           const userData = {
             name: user.displayName,
             email: user.email,
-            tasks: [],
+            tasks: {},
           }
           commit('SET_NAME', user);
           commit('SET_EMAIL', user);
