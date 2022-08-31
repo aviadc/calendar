@@ -38,7 +38,7 @@ export default createStore({
     },
     SET_TASKS(state, user) {
       console.log("in set tasks - user", user)
-      state.tasks = [...user.tasks];
+      state.tasks = {...user.tasks};
     },
     ADD_TASK(state, task) {
       state.tasks.push(task);

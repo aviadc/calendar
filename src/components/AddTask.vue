@@ -25,6 +25,7 @@ export default {
       options: [],
     }
   },
+  props: ['theDate'],
   mounted(){
    for(let i=0;i<24;i++){
     this.options.push(
@@ -39,12 +40,7 @@ export default {
     async onSubmit(e){
       e.preventDefault();
       try {
-       const docRef = await addDoc(collection(db, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-      });
-        console.log("Document written with ID: ", docRef.id);
+        console.log("this.date: ", this.theDate);
       } catch (e) {
         console.error("Error adding document: ", e);
       }

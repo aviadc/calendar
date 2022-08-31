@@ -22,7 +22,7 @@ export default {
     handleDayClick(){
       if(this.loggedIn){ 
         console.log(`${this.day}/${this.month}/${this.year}`);
-        this.$router.push({name: 'tasks',params: {adate: `${this.day}/${this.month}/${this.year}`}});
+        this.$router.push({name: 'tasks',params: {theDate: `${this.day}/${this.month}/${this.year}`}});
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="tasks-container">
-    <h1>{{ this.$route.params.adate }}</h1>
+    <h1>{{ this.$route.params.theDate }}</h1>
     <h2>Tasks</h2>
     <button @click="this.$router.go(-1)">back</button>
     <div class="tasks-inner">
@@ -11,7 +11,7 @@
     
       </div>
       <div class="add-task-container">
-        <AddTask />
+        <AddTask :theDate="date"  />
       </div>
     </div>
   </div>
@@ -28,11 +28,12 @@ export default {
     data() {
         return {
             task: "",
-            date: String,
+            date: 'rrr',
         };
     },
     mounted() {
-        // this.date = this.$route.params.adate;
+       
+        this.date = this.$route.params.theDate;
     }
 }
   
