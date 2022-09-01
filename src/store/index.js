@@ -14,13 +14,15 @@ export default createStore({
     loggedIn: false,
     email: '',
     name: '',
-    tasks: {}
+    tasks: {},
+    userRefId: ""
   },
   getters: {
     loggedIn: ({ loggedIn }) => loggedIn,
     email: ({ email }) => email,
     name: ({ name }) => name,
     tasks: ({ tasks }) => tasks,
+    userRefId: ({ userRefId }) => userRefId,
   },
   mutations: {
     LOG_IN(state) {
@@ -39,6 +41,10 @@ export default createStore({
     SET_TASKS(state, user) {
       console.log("in set tasks - user", user)
       state.tasks = {...user.tasks};
+    },
+    SET_USERREFID(state, userRef) {
+      console.log("in set userRef - user", userRef)
+      state.userRefId = userRef.id;
     },
     ADD_TASK(state, task) {
       state.tasks.push(task);
@@ -76,13 +82,15 @@ export default createStore({
           }
           commit('SET_NAME', user);
           commit('SET_EMAIL', user);
+          
 
           const userDetails = await fetchUserDetails(user.email);
           if (!userDetails) {
             addDoc(collection(db, 'users'), userData);
           }else{
-            commit('SET_TASKS',userDetails);
+            commit('SET_TASKS',userDetails.data);
           }
+            commit('SET_USERREFID', userDetails.ref);
 
         })
         .catch((error) => {

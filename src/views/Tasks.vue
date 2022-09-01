@@ -11,7 +11,7 @@
     
       </div>
       <div class="add-task-container">
-        <AddTask :theDate="date"  />
+        <AddTask :theDate="date"/>
       </div>
     </div>
   </div>
@@ -27,13 +27,13 @@ export default {
     },
     data() {
         return {
-            task: "",
+          
             date: 'rrr',
         };
     },
     mounted() {
-       
         this.date = this.$route.params.theDate;
+        
     }
 }
   

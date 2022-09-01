@@ -14,39 +14,48 @@
   </div>
 </template>
 <script>
-import {db} from "../main.js"
-import { collection, addDoc } from "firebase/firestore";
+import { db } from "../main.js";
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import { mapGetters } from "vuex";
 export default {
   name: "AddTask",
-  data(){
-    return{
+  data() {
+    return {
       text: "",
       time: "",
       options: [],
+    };
+  },
+  props: ["theDate"],
+  mounted() {
+    for (let i = 0; i < 24; i++) {
+      this.options.push({
+        value: i < 10 ? `0${i}:00` : `${i}:00`,
+        id: i,
+      });
     }
   },
-  props: ['theDate'],
-  mounted(){
-   for(let i=0;i<24;i++){
-    this.options.push(
-      {
-        value: i<10? `0${i}:00`: `${i}:00`,
-        id: i,
-      }
-    )
-   }
+  computed: {
+    ...mapGetters(["userRefId","tasks"]),
   },
-  methods:{
-    async onSubmit(e){
+  methods: {
+    async onSubmit(e) {
       e.preventDefault();
       try {
         console.log("this.date: ", this.theDate);
+        console.log("this.USERREFID: ", this.userRefId);
+        console.log("this.tasks: ", this.tasks[this.theDate.split('/').join('')]);
+        // const userDocRef = doc(db, "users", this.userRef.id);
+        // console.log("update ref?",userDocRef);
+        await updateDoc(doc(db, "users", this.userRefId), {
+          [`tasks.${this.theDate.split('/').join('')}`]: [2,2],
+        });
       } catch (e) {
         console.error("Error adding document: ", e);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style scoped>
 .add-task-container form {
