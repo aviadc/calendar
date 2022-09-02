@@ -48,7 +48,7 @@ export default {
         // const userDocRef = doc(db, "users", this.userRef.id);
         // console.log("update ref?",userDocRef);
         await updateDoc(doc(db, "users", this.userRefId), {
-          [`tasks.${this.theDate.split('/').join('')}`]: [2,2],
+          [`tasks.${this.theDate.split('/').join('')}`]: {},
         });
       } catch (e) {
         console.error("Error adding document: ", e);
