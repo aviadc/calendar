@@ -5,9 +5,7 @@
     <button @click="this.$router.go(-1)">back</button>
     <div class="tasks-inner">
       <div class="tasks-list">
-        <Task title="first task" time="12/08/19" />
-        <Task title="first task" time="12/08/19" />
-        <Task title="first task" time="12/08/19" />
+      
     
       </div>
       <div class="add-task-container">
@@ -28,7 +26,7 @@ export default {
     data() {
         return {
           
-            date: 'rrr',
+            date: '',
         };
     },
     mounted() {

@@ -2,8 +2,8 @@
   <div class="task-container">
     <div class="task-left"></div>
     <div class="task-inner">
-      <h3 class="task-title">{{text}}</h3>
-      <h4 class="task-time">{{text}}</h4>
+      <h3 class="task-title">{{title}}</h3>
+      <h4 class="task-time">{{time}}</h4>
     </div>
     <div class="delete-task">
       <button>X</button>
