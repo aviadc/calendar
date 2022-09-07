@@ -15,7 +15,8 @@ export default createStore({
     email: '',
     name: '',
     tasks: {},
-    userRefId: ""
+    userRefId: "",
+    currentDate: new Date(),
   },
   getters: {
     loggedIn: ({ loggedIn }) => loggedIn,
@@ -23,6 +24,7 @@ export default createStore({
     name: ({ name }) => name,
     tasks: ({ tasks }) => tasks,
     userRefId: ({ userRefId }) => userRefId,
+    currentDate: ({ currentDate }) => currentDate,
   },
   mutations: {
     LOG_IN(state) {
@@ -45,6 +47,10 @@ export default createStore({
     SET_USERREFID(state, userRef) {
       console.log("in set userRef - user", userRef)
       state.userRefId = userRef.id;
+    },
+    SET_CURRENTDATE(state, date) {
+      console.log("in current date - user", userRef)
+      state.currentDate = date;
     },
     ADD_TASK(state, task) {
       state.tasks.push(task);
@@ -119,6 +125,9 @@ export default createStore({
           // An error happened.
 
         });
+    },
+    updateDate({commit},date){
+      commit('SET_CURRENTDATE',date);
     }
 
   }

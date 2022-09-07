@@ -1,7 +1,5 @@
 <template>
   <div class="calendar-container">
-    <!-- <button v-on:click="increment">{{ number }}</button> -->
-    <br>
     <Day v-for="day in startPaddingDays" :key='Math.random()*day*1000' :day="daysPrevMonth - startPaddingDays + day" aclass="padding"/>
     <Day v-for="day in daysCurrentMonth" :key='Math.random()*day*1000' :day="day" :month="this.month+1" :year="this.year" aclass="current-month"/>
     <Day v-for="day in endPaddingDays" :key='Math.random()*day*1000' :day="day" aclass="padding"/>
@@ -65,10 +63,6 @@ export default {
     );
     this.startPaddingDays = this.weekDays.indexOf(this.startDateString.split(', ')[0]);
     this.endPaddingDays = 6 - this.weekDays.indexOf(this.endDateString.split(', ')[0]);
-    // console.log("month",this.month);
-    // console.log("this get month",new Date().getMonth());
-    // console.log("year",this.year);
-    // console.log(this.startPaddingDays);
   },
   methods: {
     increment() {
