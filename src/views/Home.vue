@@ -32,25 +32,28 @@ export default {
     };
   },
   mounted() {
-    // this.currentDate = new Date();
-    // console.log("app current Date", this.currentDate);
+    this.$store.dispatch('updateDate',this.currentDate);
   },
   methods: {
     nextMonth() {
       this.month++;
       this.currentDate.setMonth(this.currentDate.getMonth()+1);
+      this.$store.dispatch('updateDate',this.currentDate);
     },
     prevMonth() {
       this.month--;
       this.currentDate.setMonth(this.currentDate.getMonth()-1);
+      this.$store.dispatch('updateDate',this.currentDate);
     },
     nextYear() {
       this.year++;
       this.currentDate.setFullYear(this.currentDate.getFullYear() + 1);
+      this.$store.dispatch('updateDate',this.currentDate);
     },
     prevYear() {
       this.year--;
       this.currentDate.setFullYear(this.currentDate.getFullYear() - 1);
+      this.$store.dispatch('updateDate',this.currentDate);
     },
   },
 };
