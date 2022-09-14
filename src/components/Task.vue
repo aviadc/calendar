@@ -42,7 +42,7 @@ export default {
 .task-left{
   width: 2%;
   height: 100%;
-  background-color: blue;
+  background-color: yellow;
 }
 
 .delete-task{
