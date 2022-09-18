@@ -38,6 +38,7 @@ export default {
     nextMonth() {
       this.month++;
       this.currentDate.setMonth(this.currentDate.getMonth()+1);
+      console.log()
       this.$store.dispatch('updateDate',this.currentDate);
     },
     prevMonth() {
