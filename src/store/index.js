@@ -128,7 +128,7 @@ export default createStore({
     },
     updateDate({commit},date){
       commit('SET_CURRENTDATE',date);
-      console.log("store date",this.state.currentDate);
+      console.log("store date",this.state.currentDate.getMonth()+1);
     }
 
   }
