@@ -14,3 +14,7 @@ export const fetchUserDetails = async (email)=>{
   return result.empty? false : {data: result.docs[0].data(),ref: result.docs[0]};
 }
 
+export const checkMonthTasks = (month, tasks)=>{
+  return tasks[month];
+} 
+
