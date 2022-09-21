@@ -49,7 +49,6 @@ export default createStore({
       state.userRefId = userRef.id;
     },
     SET_CURRENTDATE(state, date) {
-      // console.log("in current date - store",  state.currentDate)
       state.currentDate = date;
     },
     ADD_TASK(state, task) {
