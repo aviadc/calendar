@@ -30,7 +30,6 @@ export default {
     };
   },
   mounted() {
-    // this.currentDate.setMonth(new Date().getMonth()+this.currentDate);
     this.month = `${this.currentDate.toLocaleString("en-GB", {
       month: "long",
     })}`;
