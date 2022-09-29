@@ -44,7 +44,7 @@ export default {
   width: 6.5vw;
   height: 6.5vw;
   margin: 0.2vw;
-  border: 1px solid black;
+  border: 1px solid teal;
   background-color: white;
   box-shadow: 0px 0px 3px #cbd4c2;
 }
